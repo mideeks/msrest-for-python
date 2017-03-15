@@ -43,7 +43,10 @@ def log_request(adapter, request, *args, **kwargs):
         _LOGGER.debug("Request method: %r", request.method)
         _LOGGER.debug("Request headers:")
         for header, value in request.headers.items():
-            _LOGGER.debug("    %r: %r", header, value)
+            if header == 'Authorization':
+                value = '*****'
+            else:
+                _LOGGER.debug("    %r: %r", header, value)
         _LOGGER.debug("Request body:")
 
         # We don't want to log the binary data of a file upload.
